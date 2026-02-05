@@ -80,11 +80,9 @@ ui <- fluidPage(
 # SERVER
 #-------------------------------------------------
 server <- function(input, output) {
-  
-  # Função para padronizar os gráficos
   my_plot <- function(df, x, y, title, color) {
-    ggplot(df, aes_string(x = x, y = y)) +
-      geom_line(color = color, size = 1) +
+    ggplot(df, aes(x = .data[[x]], y = .data[[y]])) +
+      geom_line(color = color, linewidth = 1) +
       labs(title = title) +
       theme_minimal()
   }
